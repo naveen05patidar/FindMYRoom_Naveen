@@ -111,7 +111,7 @@ function NavBar() {
                 Something else here
               </NavDropdown.Item> */}
               </NavDropdown>
-              <Nav.Link ><Link className='np-Link' to='/login'>Contact</Link></Nav.Link>
+              <Nav.Link ><Link className='np-Link' to='/contact'>Contact</Link></Nav.Link>
             </Nav>
             <Form className="d-flex">
               <Form.Control

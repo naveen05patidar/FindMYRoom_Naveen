@@ -70,15 +70,15 @@ const Contact = () => {
                         <div className="col-md-3 text-center">
                             <ul className="list-unstyled mb-0">
                                 <li><i className="fas fa-map-marker-alt fa-2x"></i>
-                                    <p>San Francisco, CA 94126, USA</p>
+                                    <p>Vishnupuri, Bhawarkua, Indore</p>
                                 </li>
 
                                 <li><i className="fas fa-phone mt-4 fa-2x"></i>
-                                    <p>+ 01 234 567 89</p>
+                                    <p> +91 7692802631</p>
                                 </li>
 
                                 <li><i className="fas fa-envelope mt-4 fa-2x"></i>
-                                    <p>contact@mdbootstrap.com</p>
+                                    <p>contact.FindMyRoom@gmail.com</p>
                                 </li>
                             </ul>
                         </div>

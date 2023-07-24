@@ -14,6 +14,7 @@ const OrderCard = () => {
     const [fullHouse, setFullHouse] = useState(null);
     const [allOrder, setAllOrder] = useState(null);
 
+
     const uid = useSelector((state)=>state.email);
 
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ const OrderCard = () => {
             try {
                 const response = await axios.get(orderFind);
                 const orderData = response.data.order;
-                setAllOrder(response.data);
+                setAllOrder(response.data.order);
 
                 const rkOrders = [];
                 const oneBHKOrders = [];
@@ -86,6 +87,15 @@ const OrderCard = () => {
         }
     }
 
+    const handelDtails = (oid,cat)=>{
+
+        const obj = {
+            orderId :oid,
+            data:allOrder,
+            cat:cat
+        }
+        navigate('/orderdetails',{state:obj})
+    }
 
     return (
         <div className="np-ordercard">
@@ -137,11 +147,11 @@ const OrderCard = () => {
                                                     <div class="col-md-6 col-lg-3 border-sm-start-none border-start">
                                                         <div class="d-flex flex-row align-items-center mb-1">
                                                             <h4 class="mb-1 me-1">Rs. {item.price}</h4>
-                                                            <span class="text-danger"><s>Maint Charge : Rs. {item.mainCharge}</s></span>
                                                         </div>
-                                                        <h6 class="text-success">Free shipping</h6>
+                                                        <h6 className="text-success">Maint Charge : Rs. {item.mainCharge}</h6>
+                                                        
                                                         <div class="d-flex flex-column mt-4">
-                                                            <button class="btn btn-primary btn-sm">Details</button>
+                                                            <button class="btn btn-primary btn-sm"onClick={()=>handelDtails(item.orderId,item.category)}>Details</button>
                                                             <button class="btn btn-outline-primary btn-sm mt-2" onClick={() => handleAddToCard(item.orderId)}>Add to wish list</button>
                                                         </div>
                                                     </div>
@@ -199,11 +209,10 @@ const OrderCard = () => {
                                                     <div class="col-md-6 col-lg-3 border-sm-start-none border-start">
                                                         <div class="d-flex flex-row align-items-center mb-1">
                                                             <h4 class="mb-1 me-1">Rs. {item.price}</h4>
-                                                            <span class="text-danger"><s>Maint Charge : Rs. {item.mainCharge}</s></span>
                                                         </div>
-                                                        <h6 class="text-success">Free shipping</h6>
+                                                        <h6 className="text-success">Maint Charge : Rs. {item.mainCharge}</h6>
                                                         <div class="d-flex flex-column mt-4">
-                                                            <button class="btn btn-primary btn-sm">Details</button>
+                                                            <button class="btn btn-primary btn-sm"onClick={()=>handelDtails(item.orderId,item.category)}>Details</button>
                                                             <button class="btn btn-outline-primary btn-sm mt-2" onClick={() => handleAddToCard(item.orderId, item.userId)} >Add to wish list</button>
                                                         </div>
                                                     </div>
@@ -261,11 +270,10 @@ const OrderCard = () => {
                                                     <div class="col-md-6 col-lg-3 border-sm-start-none border-start">
                                                         <div class="d-flex flex-row align-items-center mb-1">
                                                             <h4 class="mb-1 me-1">Rs. {item.price}</h4>
-                                                            <span class="text-danger"><s>Maint Charge : Rs. {item.mainCharge}</s></span>
                                                         </div>
-                                                        <h6 class="text-success">Free shipping</h6>
+                                                        <h6 className="text-success">Maint Charge : Rs. {item.mainCharge}</h6>
                                                         <div class="d-flex flex-column mt-4">
-                                                            <button class="btn btn-primary btn-sm">Details</button>
+                                                            <button class="btn btn-primary btn-sm"onClick={()=>handelDtails(item.orderId,item.category)}>Details</button>
                                                             <button class="btn btn-outline-primary btn-sm mt-2" onClick={() => handleAddToCard(item.orderId, item.userId)} >Add to wish list</button>
                                                         </div>
                                                     </div>
@@ -324,11 +332,10 @@ const OrderCard = () => {
                                                     <div class="col-md-6 col-lg-3 border-sm-start-none border-start">
                                                         <div class="d-flex flex-row align-items-center mb-1">
                                                             <h4 class="mb-1 me-1">Rs. {item.price}</h4>
-                                                            <span class="text-danger"><s>Maint Charge : Rs. {item.mainCharge}</s></span>
                                                         </div>
-                                                        <h6 class="text-success">Free shipping</h6>
+                                                        <h6 className="text-success">Maint Charge : Rs. {item.mainCharge}</h6>
                                                         <div class="d-flex flex-column mt-4">
-                                                            <button class="btn btn-primary btn-sm">Details</button>
+                                                            <button class="btn btn-primary btn-sm"onClick={()=>handelDtails(item.orderId,item.category)}>Details</button>
                                                             <button class="btn btn-outline-primary btn-sm mt-2" onClick={() => handleAddToCard(item.orderId, item.userId)} >Add to wish list</button>
                                                         </div>
                                                     </div>
@@ -385,11 +392,10 @@ const OrderCard = () => {
                                                     <div class="col-md-6 col-lg-3 border-sm-start-none border-start">
                                                         <div class="d-flex flex-row align-items-center mb-1">
                                                             <h4 class="mb-1 me-1">Rs. {item.price}</h4>
-                                                            <span class="text-danger"><s>Maint Charge : Rs. {item.mainCharge}</s></span>
                                                         </div>
-                                                        <h6 class="text-success">Free shipping</h6>
+                                                        <h6 className="text-success">Maint Charge : Rs. {item.mainCharge}</h6>
                                                         <div class="d-flex flex-column mt-4">
-                                                            <button class="btn btn-primary btn-sm">Details</button>
+                                                            <button class="btn btn-primary btn-sm"onClick={()=>handelDtails(item.orderId,item.category)}>Details</button>
                                                             <button class="btn btn-outline-primary btn-sm mt-2" onClick={() => handleAddToCard(item.orderId, item.userId)} >Add to wish list</button>
                                                         </div>
                                                     </div>
