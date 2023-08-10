@@ -6,3 +6,10 @@ export const setUserId = (email) => {
     payload: email,
   };
 };
+
+export const setToken = (email) => {
+  return {
+    type: 'token',
+    token: email,
+  };
+};

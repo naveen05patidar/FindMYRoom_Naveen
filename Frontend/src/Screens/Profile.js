@@ -12,7 +12,7 @@ import {
   MDBCheckbox
 } from 'mdb-react-ui-kit';
 import { Link } from 'react-router-dom';
-import { userFind } from '../ApiRouter';
+import { userFind,userUpdate } from '../ApiRouter';
 import NavBar from '../Cards/Navbar';
 import axios from 'axios';
 import { userPost } from '../ApiRouter';
@@ -22,24 +22,33 @@ import { useSelector } from 'react-redux';
 
 function Profile() {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
+  const [id,setId]=useState();
 
   const uid = useSelector((state)=>state.email);
-  console.log(uid);
   
   const navigate = useNavigate();
 
   useEffect(()=>{
   const fetchData = async()=>{
     const response = await axios.get(userFind+uid);
-    console.log(response.data.user);
+    const ProfileData = response.data.user 
+      setName(ProfileData.name);
+      setMobile(ProfileData.mobile);
+      setId(ProfileData._id);
   }
+  fetchData()
   },[])
 
   const handleSubmit =async (e) => {
        e.preventDefault();
-  
+       const obj={
+        name :name,
+        mobile:mobile
+       }
+       console.log(obj);
+       const response = await axios.put(userUpdate+uid,obj);
+       console.log(response);
   };
 
   return (
@@ -55,17 +64,12 @@ function Profile() {
 
                 <div className='d-flex flex-row align-items-center mb-4'>
                   <MDBIcon fas icon='user me-3' size='lg' />
-                  <MDBInput label='Your Name' id='form1' type='text' className='w-100' onChange={(e) => setName(e.target.value)} />
+                  <MDBInput label='Your Name' id='form1' type='text' className='w-100' value={name} onChange={(e) => setName(e.target.value)} />
                 </div>
 
                 <div className='d-flex flex-row align-items-center mb-4'>
                   <MDBIcon fas icon='envelope me-3' size='lg' />
-                  <MDBInput label='Your Email' id='form2' type='email' onChange={(e) => setEmail(e.target.value)} />
-                </div>
-
-                <div className='d-flex flex-row align-items-center mb-4'>
-                  <MDBIcon fas icon='envelope me-3' size='lg' />
-                  <MDBInput label='Your Mobile No.' id='form2' type='number' onChange={(e) => setMobile(e.target.value)} />
+                  <MDBInput label='Your Mobile No.' id='form2' type='number' value={mobile} onChange={(e) => setMobile(e.target.value)} />
                 </div>
 
                 <div className='mb-4'>

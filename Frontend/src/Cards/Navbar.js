@@ -11,7 +11,8 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { orderCartFind } from '../ApiRouter';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setToken } from '../Actions/actions';
 
 function NavBar() {
   const [cartData, setCartData] = useState([]);
@@ -20,6 +21,7 @@ function NavBar() {
   const userId = useSelector((state) => state.email);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,8 +45,22 @@ function NavBar() {
     fetchData();
   }, [])
 
+  // useEffect(() => {
+  //   window.addEventListener('beforeunload', handleLogout);
+
+  //   // Clean up the event listener when the component unmounts
+  //   return () => {
+  //     window.removeEventListener('beforeunload', handleLogout);
+  //   };
+  // }, []);
+
   const handleLogout = () => {
     localStorage.removeItem('token');
+    navigate('/')
+    dispatch(setToken(''));
+    // window.location.reload();
+  }
+  const handleLogo = ()=>{
     navigate('/')
   }
   return (
@@ -52,7 +68,7 @@ function NavBar() {
       {(localStorage.getItem('token')) ? <Navbar expand="lg" className="bg-body-tertiary">
         <Container fluid>
           <Navbar.Brand href="#">
-            <img className="img-fluid w-25 h-25" alt='LOGO' src={myImage} />
+            <img className="img-fluid w-25 h-25" onClick={()=>navigate('/dashboard')} alt='LOGO' src={myImage} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -92,7 +108,7 @@ function NavBar() {
       </Navbar> : <Navbar expand="lg" className="bg-body-tertiary">
         <Container fluid>
           <Navbar.Brand href="#">
-            <img className="img-fluid w-25 h-25" alt='LOGO' src={myImage} />
+            <img className="img-fluid w-25 h-25" onClick={()=>navigate("/")} alt='LOGO' src={myImage} />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">

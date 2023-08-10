@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { setUserId } from '../Actions/actions';
+import { setToken, setUserId } from '../Actions/actions';
 import { useDispatch } from 'react-redux';
 
 import {
@@ -43,6 +43,7 @@ function Login() {
           localStorage.setItem('token',token);
           dispatch(setUserId(email));
           navigate('/dashboard');
+          dispatch(setToken(token));
 
         }
       } catch (error) {

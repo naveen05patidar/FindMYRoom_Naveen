@@ -2,6 +2,7 @@ import { USER_ID } from "../Actions/actions.js";
 
 const initialState = {
   email: null,
+  token: localStorage.getItem('token') || '',
 };
 
 export const userIdReducer = (state = initialState, action) => {
@@ -12,6 +13,13 @@ export const userIdReducer = (state = initialState, action) => {
         email: action.payload
       };
     }
+    case "token": {
+      return {
+        ...state,
+        token: action.token
+      };
+    }
+    
     default:
       return state;
   }

@@ -9,11 +9,7 @@ const OrderDetails = () => {
 
     const location = useLocation();
     const { orderId, data, cat } = location.state;
-    console.log(cat);
-
-    console.log(product);
-    console.log(simProduct);
-
+    
     useEffect(() => {
         const fetchData = async () => {
             const simArr = [];
@@ -26,17 +22,12 @@ const OrderDetails = () => {
                     simArr.push(data[i]);
                 }
             }
-
-            console.log(simArr);
-            console.log(prod);
             setProduct(prod);
             setSimProduct(simArr)
         }
         fetchData();
     }, [])
 
-    console.log(orderId);
-    console.log(data);
 
 
     return (

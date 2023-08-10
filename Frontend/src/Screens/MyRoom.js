@@ -14,15 +14,12 @@ function MyRoom() {
     const userId = useSelector((state) => state.email);
 
     const navigate = useNavigate();
-    console.log(myOrder);
-    console.log(userId);
-
+   
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(orderFind);
                 const orderData = response.data.order;
-                console.log(orderData);
                 setAllOrder(orderData)
 
                 const order = [];
@@ -58,6 +55,10 @@ function MyRoom() {
         navigate('/orderdetails', { state: obj })
     }
 
+    const handleEditOrder = (oid)=>{
+        navigate('/editorder', {state:oid})
+    }
+
 
     return (
         <div classNameName="np-ordercard">
@@ -81,7 +82,6 @@ function MyRoom() {
                                                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/img%20(4).webp" className="w-100" alt="Product" />
                                                                     <a href="#!">
                                                                         <div className="mask" style={{ backgroundColor: "rgba(251, 251, 251, 0.15)" }}></div>
-                                                                        {/* background-color: rgba(251, 251, 251, 0.15) */}
                                                                     </a>
                                                                 </div>
                                                             </div>
@@ -117,7 +117,7 @@ function MyRoom() {
                                                                 <h6 className="text-success">Maint Charge : Rs. {item.mainCharge}</h6>
                                                                 <div className="d-flex flex-column mt-4">
                                                                     <button className="btn btn-primary btn-sm"onClick={()=>handelDtails(item.orderId,item.category)}>Details</button>
-                                                                    <button className="btn btn-primary btn-sm mt-2" style={{backgroundColor:"Yellow",color:"black",fontWeight:"bold"}}>Edit Order</button>
+                                                                    <button className="btn btn-primary btn-sm mt-2" onClick={()=>handleEditOrder(item.orderId)} style={{backgroundColor:"Yellow",color:"black",fontWeight:"bold"}}>Edit Order</button>
                                                                     <button className="btn btn-outline-primary btn-sm mt-2" style={{backgroundColor:"red",color:"black",fontWeight:"bolder"}} onClick={() => handleRemoveOrder(item.orderId)}>Remove Order</button>
                                                                 </div>
                                                             </div>
